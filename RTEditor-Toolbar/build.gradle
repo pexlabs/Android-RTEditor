@@ -41,4 +41,5 @@ dependencies {
     //compile 'com.1gravity:android-rteditor-core:1.5.0'
 }
 
+apply from: '../android-artifacts.gradle'
 apply from: '../pexlabs-repo-push.gradle'
