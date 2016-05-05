@@ -18,7 +18,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 14
@@ -42,5 +42,4 @@ dependencies {
     compile 'com.1gravity:android-colorpicker:1.5.0'
 }
 
-apply from: '../android-artifacts.gradle'
-apply from: '../central-publish.gradle'
+apply from: '../pexlabs-repo-push.gradle'
