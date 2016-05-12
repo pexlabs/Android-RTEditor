@@ -49,7 +49,7 @@ abstract class AssetIndex {
                     mAssetIndex.add(line);
                 }
             } catch (final IOException e) {
-                Log.e(AssetIndex.class.getSimpleName(), e.getMessage(), e);
+                // Log.e(AssetIndex.class.getSimpleName(), e.getMessage(), e);
             } finally {
                 IOUtils.closeQuietly(in);
                 IOUtils.closeQuietly(reader);
