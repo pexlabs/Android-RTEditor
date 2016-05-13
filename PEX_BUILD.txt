@@ -1,0 +1,14 @@
+
+1) Increment patch version in <project-root>/gradle.properties:
+
+example:
+
+  old: VERSION_NAME=1.5.0.2
+  new: VERSION_NAME=1.5.0.3
+
+2) Run the following gradle tasks from <project-root>:
+
+$> gradle clean
+$> gradle assembleRelease
+$> gradle uploadArchives
+
