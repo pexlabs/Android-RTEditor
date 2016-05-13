@@ -1,4 +1,7 @@
 
+Follow these steps to build, and to publish to PexLabs artifactory
+==================================================================
+
 1) Increment patch version in <project-root>/gradle.properties:
 
 example:
