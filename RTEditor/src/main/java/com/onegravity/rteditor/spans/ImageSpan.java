@@ -17,6 +17,7 @@
 package com.onegravity.rteditor.spans;
 
 import com.onegravity.rteditor.api.media.RTImage;
+import com.onegravity.rteditor.media.MediaUtils;
 
 /**
  * An ImageSpan representing an embedded image.
@@ -31,4 +32,7 @@ public class ImageSpan extends MediaSpan {
         return (RTImage) mMedia;
     }
 
+    public ImageSpan(RTImage image, boolean isSaved, MediaUtils.MediaPathResolver resolver) {
+        super(image, isSaved, resolver);
+    }
 }

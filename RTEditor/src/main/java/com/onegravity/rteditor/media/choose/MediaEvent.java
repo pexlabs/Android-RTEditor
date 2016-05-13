@@ -17,6 +17,7 @@
 package com.onegravity.rteditor.media.choose;
 
 import com.onegravity.rteditor.api.media.RTMedia;
+import com.onegravity.rteditor.media.MediaUtils;
 
 /**
  * This event is broadcast via EventBus when a media file has been selected.
@@ -24,12 +25,23 @@ import com.onegravity.rteditor.api.media.RTMedia;
  */
 public class MediaEvent {
     final private RTMedia mMedia;
+    final private MediaUtils.MediaPathResolver mPathResolver;
 
     public MediaEvent(RTMedia selectedMedia) {
         mMedia = selectedMedia;
+        mPathResolver= null;
+    }
+
+    public MediaEvent(RTMedia selectedMedia, MediaUtils.MediaPathResolver resolver) {
+        mMedia = selectedMedia;
+        mPathResolver = resolver;
     }
 
     public RTMedia getMedia() {
         return mMedia;
+    }
+
+    public MediaUtils.MediaPathResolver getPathResolver() {
+        return mPathResolver;
     }
 }

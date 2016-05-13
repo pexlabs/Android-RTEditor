@@ -157,4 +157,19 @@ public class MediaUtils {
     private static boolean isNullOrEmpty(String string) {
         return string == null || string.length() == 0;
     }
+
+    /** --------------------- Modifications by PexLabs, Inc. ------------------- */
+
+    /**
+     * Custom media path resolver
+     */
+    public interface MediaPathResolver{
+
+        /**
+         * Resolve a custom path to a valid Uri
+         * @param path - path can be in any scheme (e.g. cid:)
+         * @return - Resolved Uri or null
+         */
+        Uri resolve(String path);
+    }
 }

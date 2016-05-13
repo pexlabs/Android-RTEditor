@@ -47,4 +47,11 @@ public abstract class MediaSpan extends android.text.style.ImageSpan {
         return mIsSaved;
     }
 
+    /** --------------------- Modifications by PexLabs, Inc. ------------------- */
+
+    public MediaSpan(RTMedia media, boolean isSaved, MediaUtils.MediaPathResolver resolver) {
+        super(RTApi.getApplicationContext(), resolver.resolve(media.getFilePath(RTFormat.SPANNED)));
+        mMedia = media;
+        mIsSaved = isSaved;
+    }
 }

@@ -54,6 +54,7 @@ import com.onegravity.rteditor.effects.SuperscriptEffect;
 import com.onegravity.rteditor.effects.TypefaceEffect;
 import com.onegravity.rteditor.effects.UnderlineEffect;
 import com.onegravity.rteditor.fonts.RTTypeface;
+import com.onegravity.rteditor.media.MediaUtils;
 import com.onegravity.rteditor.media.choose.MediaChooserActivity;
 import com.onegravity.rteditor.media.choose.MediaEvent;
 import com.onegravity.rteditor.spans.ImageSpan;
@@ -315,6 +316,13 @@ public class RTManager implements RTToolbarListener, RTEditTextListener {
     }
 
     /**
+     * Get current toolbar visibility mode
+     */
+    public ToolbarVisibility getToolbarVisibility() {
+        return mToolbarVisibility;
+    }
+
+    /**
      * Set the auto show/hide toolbar mode.
      */
     public void setToolbarVisibility(ToolbarVisibility toolbarVisibility) {
@@ -479,7 +487,7 @@ public class RTManager implements RTToolbarListener, RTEditTextListener {
     }
 
     /* called from onEventMainThread(MediaEvent) */
-    private void insertImage(final RTEditText editor, final RTImage image) {
+    private void insertImage(final RTEditText editor, final RTImage image, final MediaUtils.MediaPathResolver mediaPathResolver) {
         if (image != null && editor != null) {
             Selection selection = new Selection(editor);
             Editable str = editor.getText();
@@ -492,7 +500,13 @@ public class RTManager implements RTToolbarListener, RTEditTextListener {
                 // now add the actual image and inform the RTOperationManager about the operation
                 Spannable oldSpannable = editor.cloneSpannable();
 
-                ImageSpan imageSpan = new ImageSpan(image, false);
+                ImageSpan imageSpan;
+                if (mediaPathResolver == null) {
+                    imageSpan = new ImageSpan(image, false);
+                } else {
+                    imageSpan = new ImageSpan(image, false, mediaPathResolver);
+                }
+
                 str.setSpan(imageSpan, selection.start(), selection.end() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 int selStartAfter = editor.getSelectionStart();
                 int selEndAfter = editor.getSelectionEnd();
@@ -712,7 +726,7 @@ public class RTManager implements RTToolbarListener, RTEditTextListener {
         RTEditText editor = mEditors.get(mActiveEditor);
         RTMedia media = event.getMedia();
         if (editor != null && media instanceof RTImage) {
-            insertImage(editor, (RTImage) media);
+            insertImage(editor, (RTImage) media, event.getPathResolver());
             EventBus.getDefault().removeStickyEvent(event);
             mActiveEditor = Integer.MAX_VALUE;
         }
