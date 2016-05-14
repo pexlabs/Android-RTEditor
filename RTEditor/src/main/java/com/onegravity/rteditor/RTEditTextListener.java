@@ -61,11 +61,4 @@ public interface RTEditTextListener {
      */
     void onRichTextEditingChanged(RTEditText editor, boolean useRichText);
 
-    /**
-     * A MediaSpan object has been removed
-     * @param editor
-     * @param mediaSpan
-     */
-    void onMediaSpanRemoved(RTEditText editor, MediaSpan mediaSpan);
-
 }

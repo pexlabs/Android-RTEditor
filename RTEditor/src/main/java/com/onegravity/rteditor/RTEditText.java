@@ -80,6 +80,8 @@ public class RTEditText extends EditText implements TextWatcher, SpanWatcher, Li
 
     private RTEditTextListener mListener;
 
+    private RTEditTextSpanChangeListener mSpanChangeListener;
+
     private RTMediaFactory<RTImage, RTAudio, RTVideo> mMediaFactory;
 
     // used to check if selection has changed
@@ -181,6 +183,10 @@ public class RTEditText extends EditText implements TextWatcher, SpanWatcher, Li
     void unregister() {
         mListener = null;
         mMediaFactory = null;
+    }
+
+    public void registerSpanChangeListener(RTEditTextSpanChangeListener listener) {
+        mSpanChangeListener = listener;
     }
 
     /**
@@ -464,8 +470,8 @@ public class RTEditText extends EditText implements TextWatcher, SpanWatcher, Li
         if (what instanceof RTSpan && what instanceof ParagraphStyle) {
             setParagraphsAreUp2Date(false);
         }
-        if (what instanceof MediaSpan && mListener != null) {
-            mListener.onMediaSpanRemoved(this, (MediaSpan) what);
+        if (what instanceof MediaSpan && mSpanChangeListener != null) {
+            mSpanChangeListener.onMediaSpanRemoved(this, (MediaSpan) what);
         }
     }
 
