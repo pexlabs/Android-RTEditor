@@ -473,6 +473,17 @@ public class RTManager implements RTToolbarListener, RTEditTextListener {
         onPickCaptureImage(MediaAction.CAPTURE_PICTURE);
     }
 
+    /**
+     * Save current editor as the active one. Need to call this before popping a new activity, for
+     * things like picking an image.
+     */
+    public void saveCurrentActiveEditor() {
+        RTEditText editor = getActiveEditor();
+        if (editor != null) {
+            mActiveEditor = editor.getId();
+        }
+    }
+
     private void onPickCaptureImage(MediaAction mediaAction) {
         RTEditText editor = getActiveEditor();
         if (editor != null && mRTApi != null) {
