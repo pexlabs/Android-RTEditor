@@ -19,6 +19,7 @@ package com.onegravity.rteditor;
 import android.text.Spannable;
 
 import com.onegravity.rteditor.spans.LinkSpan;
+import com.onegravity.rteditor.spans.MediaSpan;
 
 /**
  * The interface to be implemented by the RTManager to listen to RTEditText events.
@@ -53,11 +54,18 @@ public interface RTEditTextListener {
     /**
      * A link in a LinkSpan has been clicked.
      */
-    public void onClick(RTEditText editor, LinkSpan span);
+    void onClick(RTEditText editor, LinkSpan span);
 
     /**
      * Rich text editing was enabled/disabled for this editor.
      */
-    public void onRichTextEditingChanged(RTEditText editor, boolean useRichText);
+    void onRichTextEditingChanged(RTEditText editor, boolean useRichText);
+
+    /**
+     * A MediaSpan object has been removed
+     * @param editor
+     * @param mediaSpan
+     */
+    void onMediaSpanRemoved(RTEditText editor, MediaSpan mediaSpan);
 
 }

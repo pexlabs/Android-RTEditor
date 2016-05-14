@@ -464,6 +464,9 @@ public class RTEditText extends EditText implements TextWatcher, SpanWatcher, Li
         if (what instanceof RTSpan && what instanceof ParagraphStyle) {
             setParagraphsAreUp2Date(false);
         }
+        if (what instanceof MediaSpan && mListener != null) {
+            mListener.onMediaSpanRemoved(this, (MediaSpan) what);
+        }
     }
 
     /**
